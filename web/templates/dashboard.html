@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block isi %}
+<h1>Dashboard</h1>
+<p>Status database: {% if db_ok %}<span class="pill hijau">MySQL Terkoneksi</span>{% else %}<span class="pill merah">MySQL Tidak Terkoneksi</span>{% endif %}</p>
+<div class="grid">
+  <div class="kartu"><div class="angka">{{ jml_penggunaan }}</div><div>Data penggunaan</div></div>
+  <div class="kartu"><div class="angka">{{ jml_tagihan }}</div><div>Total tagihan</div></div>
+  <div class="kartu"><div class="angka">{{ jml_belum }}</div><div>Tagihan belum lunas</div></div>
+</div>
+<p class="kecil">Aplikasi Pembayaran Listrik Pascabayar — client-server (Flask + MySQL). Hak akses dibedakan per level: Administrator mengelola data dan pembayaran; Pelanggan hanya melihat data miliknya.</p>
+{% endblock %}

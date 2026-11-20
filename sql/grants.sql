@@ -1,0 +1,23 @@
+-- =====================================================================
+-- grants.sql - catatan hak akses (least privilege).
+-- Perintah GRANT yang aktif ada di setup_database.sql dan dijalankan
+-- oleh root. Prinsipnya:
+--  * Aplikasi TIDAK memakai akun root; aplikasi memakai app_listrik.
+--  * app_listrik hanya berhak atas database listrik_pascabayar.* -
+--    tidak bisa membaca database lain, membuat user, atau mematikan
+--    server. Ini contoh penerapan hak akses per pengguna pada Unit 3
+--    (Menerapkan Akses Basis Data).
+--  * Di lingkungan produksi, hak app_listrik sebaiknya dipersempit lagi
+--    menjadi hanya SELECT/INSERT/UPDATE/DELETE + EXECUTE pada routine,
+--    sedangkan DDL (CREATE/ALTER/DROP) dijalankan akun migrasi terpisah.
+-- =====================================================================
+-- Contoh versi produksi (tidak dijalankan di demo ini):
+-- GRANT SELECT, INSERT, UPDATE, DELETE ON listrik_pascabayar.level     TO 'app_listrik'@'localhost';
+-- GRANT SELECT, INSERT, UPDATE, DELETE ON listrik_pascabayar.user      TO 'app_listrik'@'localhost';
+-- GRANT SELECT, INSERT, UPDATE, DELETE ON listrik_pascabayar.tarif     TO 'app_listrik'@'localhost';
+-- GRANT SELECT, INSERT, UPDATE, DELETE ON listrik_pascabayar.pelanggan TO 'app_listrik'@'localhost';
+-- GRANT SELECT, INSERT, UPDATE, DELETE ON listrik_pascabayar.penggunaan TO 'app_listrik'@'localhost';
+-- GRANT SELECT, INSERT, UPDATE, DELETE ON listrik_pascabayar.tagihan   TO 'app_listrik'@'localhost';
+-- GRANT SELECT, INSERT, UPDATE, DELETE ON listrik_pascabayar.pembayaran TO 'app_listrik'@'localhost';
+-- GRANT EXECUTE ON PROCEDURE listrik_pascabayar.sp_pelanggan_daya_900 TO 'app_listrik'@'localhost';
+-- GRANT EXECUTE ON FUNCTION listrik_pascabayar.fn_total_penggunaan_per_bulan TO 'app_listrik'@'localhost';

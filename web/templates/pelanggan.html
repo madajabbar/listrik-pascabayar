@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block isi %}
+<h1>Pelanggan</h1>
+<table>
+<tr><th>Nomor kWh</th><th>Nama</th><th>Alamat</th><th>Daya</th><th>Tarif/kWh</th></tr>
+{% for p in semua %}<tr><td>{{ p.nomor_kwh }}</td><td>{{ p.nama_pelanggan }}</td><td>{{ p.alamat }}</td><td>{{ p.daya }} VA</td><td>Rp{{ p.tarifperkwh }}</td></tr>{% endfor %}
+</table>
+<h2>Pelanggan Daya 900 Watt (stored procedure)</h2>
+<table>
+<tr><th>Nomor kWh</th><th>Nama</th><th>Alamat</th><th>Daya</th></tr>
+{% for p in sembilan %}<tr><td>{{ p.nomor_kwh }}</td><td>{{ p.nama_pelanggan }}</td><td>{{ p.alamat }}</td><td>{{ p.daya }} VA</td></tr>{% endfor %}
+</table>
+{% endblock %}

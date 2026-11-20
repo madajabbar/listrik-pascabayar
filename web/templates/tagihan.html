@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block isi %}
+<h1>Tagihan</h1>
+<table>
+<tr><th>ID</th><th>Pelanggan</th><th>Periode</th><th>Pemakaian</th><th>Total Bayar</th><th>Status</th><th></th></tr>
+{% for b in data %}
+<tr><td>{{ b.id_tagihan }}</td><td>{{ b.nama_pelanggan }}</td><td>{{ b.bulan }}/{{ b.tahun }}</td><td>{{ b.jumlah_meter }} kWh</td><td>Rp{{ b.total_bayar }}</td>
+<td>{% if b.status == 'LUNAS' %}<span class="pill hijau">LUNAS</span>{% else %}<span class="pill oranye">BELUM BAYAR</span>{% endif %}</td>
+<td>{% if sesi.peran == 'Administrator' and b.status != 'LUNAS' %}<form method="post" action="{{ url_for('tagihan_bayar', id_tagihan=b.id_tagihan) }}"><button type="submit">Bayar</button></form>{% endif %}</td></tr>
+{% endfor %}
+</table>
+<p class="kecil">Total bayar = pemakaian x tarif per kWh + biaya admin Rp2.500, dibulatkan dua desimal (ROUND_HALF_UP).</p>
+{% endblock %}

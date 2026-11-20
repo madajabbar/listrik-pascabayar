@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block isi %}
+<h1>Demo Algoritma — Sorting &amp; Searching</h1>
+<form method="post" class="kartu sempit">
+  <label>Input angka (pisahkan dengan koma) <input name="angka" placeholder="70, 50, 90" required></label>
+  <label>Angka yang dicari (boleh kosong) <input name="dicari" type="number"></label>
+  <button type="submit">Proses</button>
+</form>
+{% if hasil %}
+<div class="kartu">
+  <p>Angka asal: {{ hasil.asal }}</p>
+  <p><strong>Hasil sorting: {{ hasil.terurut }}</strong> (bubble sort, O(n^2), memori O(1))</p>
+  {% if hasil.temuan %}<p><strong>{{ hasil.temuan }}</strong> (binary search pada data terurut, O(log n))</p>{% endif %}
+</div>
+{% endif %}
+{% endblock %}

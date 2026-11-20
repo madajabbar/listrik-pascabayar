@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block isi %}
+<h1>Penggunaan Listrik</h1>
+<table>
+<tr><th>Pelanggan</th><th>Periode</th><th>Meter Awal</th><th>Meter Ahir</th><th>Pemakaian</th><th>Perkiraan Tagihan</th>{% if sesi.peran == 'Administrator' %}<th>Aksi (koreksi meter / hapus)</th>{% endif %}</tr>
+{% for b in data %}
+<tr><td>{{ b.nama_pelanggan }}</td><td>{{ b.bulan }}/{{ b.tahun }}</td><td>{{ b.meter_awal }}</td><td>{{ b.meter_ahir }}</td><td>{{ b.jumlah_pemakaian_kwh }} kWh</td><td>Rp{{ b.perkiraan_tagihan }}</td>
+{% if sesi.peran == 'Administrator' %}<td>
+<form method="post" action="{{ url_for('penggunaan_ubah', id_penggunaan=b.id_penggunaan) }}">
+  <input name="meter_awal" type="number" value="{{ b.meter_awal }}" style="width:90px" title="Meter awal baru">
+  <input name="meter_ahir" type="number" value="{{ b.meter_ahir }}" style="width:90px" title="Meter ahir baru">
+  <button type="submit">Ubah</button>
+</form>
+<form method="post" action="{{ url_for('penggunaan_hapus', id_penggunaan=b.id_penggunaan) }}" onsubmit="return confirm('Hapus penggunaan ini beserta tagihannya?')">
+  <button type="submit">Hapus</button>
+</form>
+</td>{% endif %}</tr>
+{% endfor %}
+</table>
+{% if sesi.peran == 'Administrator' %}
+<h2>Tambah Penggunaan</h2>
+<form method="post" action="{{ url_for('penggunaan_baru') }}" class="kartu sempit">
+  <label>Pelanggan
+    <select name="id_pelanggan">{% for p in pelanggan %}<option value="{{ p.id_pelanggan }}">{{ p.nama_pelanggan }} ({{ p.nomor_kwh }})</option>{% endfor %}</select>
+  </label>
+  <label>Bulan <input name="bulan" type="number" min="1" max="12" required></label>
+  <label>Tahun <input name="tahun" type="number" min="2000" max="2100" required></label>
+  <label>Meter Awal <input name="meter_awal" type="number" min="0" required></label>
+  <label>Meter Ahir <input name="meter_ahir" type="number" min="0" required></label>
+  <button type="submit">Simpan (trigger membuat tagihan)</button>
+</form>
+{% endif %}
+{% endblock %}

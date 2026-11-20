@@ -1,0 +1,32 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: -apple-system, 'Segoe UI', Inter, Roboto, sans-serif; background: #F5F5F7; color: #1D1D1F; }
+.layout { display: flex; min-height: 100vh; }
+.sidebar { width: 260px; background: #FFFFFF; border-right: 1px solid #E5E5EA; padding: 24px 20px; }
+.brand { font-size: 20px; font-weight: 700; margin-bottom: 16px; }
+.siapa { color: #1D1D1F; margin-bottom: 20px; line-height: 1.4; }
+.siapa span { color: #86868B; font-size: 13px; }
+.sidebar nav a { display: block; padding: 9px 12px; border-radius: 10px; color: #1D1D1F; text-decoration: none; margin-bottom: 4px; }
+.sidebar nav a:hover { background: #F5F5F7; }
+.konten { flex: 1; padding: 32px 40px; max-width: 1080px; }
+h1 { font-size: 28px; margin: 0 0 16px; }
+h2 { font-size: 20px; margin: 28px 0 12px; }
+.kartu { background: #FFFFFF; border: 1px solid #E5E5EA; border-radius: 20px; padding: 20px; margin-bottom: 16px; }
+.kartu.sempit, form.kartu { max-width: 460px; }
+.grid { display: flex; gap: 16px; flex-wrap: wrap; }
+.grid .kartu { flex: 1; min-width: 180px; text-align: center; }
+.angka { font-size: 36px; font-weight: 700; color: #0071E3; }
+label { display: block; margin-bottom: 12px; font-size: 14px; }
+input, select { width: 100%; padding: 9px 12px; border: 1px solid #E5E5EA; border-radius: 10px; margin-top: 4px; font-size: 15px; }
+button { background: #0071E3; color: #FFFFFF; border: none; border-radius: 10px; padding: 9px 18px; font-size: 15px; cursor: pointer; }
+button:hover { opacity: .9; }
+table { width: 100%; border-collapse: collapse; background: #FFFFFF; border: 1px solid #E5E5EA; border-radius: 12px; overflow: hidden; }
+th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid #E5E5EA; font-size: 14px; }
+th { color: #86868B; font-weight: 600; }
+.pill { padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+.pill.hijau { background: #E5F7EA; color: #1E7D32; }
+.pill.oranye { background: #FFF3E0; color: #B26A00; }
+.pill.merah { background: #FDECEA; color: #B3261E; }
+.pesan { border-radius: 12px; padding: 12px 16px; margin-bottom: 14px; }
+.pesan.ok { background: #E5F7EA; }
+.pesan.error { background: #FDECEA; }
+.kecil { color: #86868B; font-size: 13px; }

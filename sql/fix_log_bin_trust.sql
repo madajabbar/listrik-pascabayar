@@ -1,0 +1,14 @@
+-- =====================================================================
+-- fix_log_bin_trust.sql - dijalankan SATU KALI oleh root MySQL.
+--
+-- Masalah: MySQL di laptop ini mengaktifkan binary logging. Selama
+-- log_bin_trust_function_creators = 0, user non-SUPER (app_listrik)
+-- DILARANG membuat TRIGGER (error 1419), padahal trigger tagihan
+-- adalah syarat soal. Perintah di bawah adalah saklar resmi MySQL
+-- untuk mengizinkan user tepercaya membuat function/trigger;
+-- SET PERSIST membuatnya tetap berlaku setelah MySQL restart.
+--
+-- Jalankan dari PowerShell:
+-- cmd /c '"C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" -uroot -p < D:\Code\Python\listrik-pascabayar\sql\fix_log_bin_trust.sql'
+-- =====================================================================
+SET PERSIST log_bin_trust_function_creators = 1;

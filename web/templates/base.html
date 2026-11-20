@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block judul %}Listrik Pascabayar{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="brand">Listrik Pascabayar</div>
+    {% if sesi %}
+    <div class="siapa">{{ sesi.nama }}<br><span>{{ sesi.peran }}</span></div>
+    <nav>
+      <a href="{{ url_for('dashboard') }}">Dashboard</a>
+      <a href="{{ url_for('penggunaan') }}">Penggunaan</a>
+      <a href="{{ url_for('tagihan') }}">Tagihan</a>
+      {% if sesi.peran == 'Administrator' %}<a href="{{ url_for('pelanggan') }}">Pelanggan</a>{% endif %}
+      <a href="{{ url_for('algoritma') }}">Demo Algoritma</a>
+      <a href="{{ url_for('logout') }}">Logout</a>
+    </nav>
+    {% endif %}
+  </aside>
+  <main class="konten">
+    {% with pesan = get_flashed_messages(with_categories=true) %}
+      {% for kategori, teks in pesan %}<div class="pesan {{ kategori }}">{{ teks }}</div>{% endfor %}
+    {% endwith %}
+    {% block isi %}{% endblock %}
+  </main>
+</div>
+</body>
+</html>
